@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const blogCollection = await getCollection("blog");
+const post = blogCollection.reverse()[0];
+---
+
+<BaseLayout>
+  <div class="mt-6 md:mt-12 text-2xl md:text-4xl grid md:grid-cols-2 gap-4">
+    <div class="rounded-2xl overflow-hidden object-cover max-w-lg mb-2 md:mb-0">
+      <img src="hero.jpeg" alt="Preetiman Misra" />
+    </div>
+    <div class="font-light">
+      <p>
+        <span class="inline-block">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.0"
+            stroke="currentColor"
+            class="w-4 h-4 md:h-10 md:w-10"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+            ></path>
+          </svg>
+        </span>
+         Hi, I&apos;m <span class="font-black">Preetiman Misra</span>.
+      </p>
+      <p>Welcome to my personal corner on the internet.</p>
+      <!-- Socials -->
+      <div class="flex justify-start items-center space-x-2 mt-4">
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/preetiman-misra"
+          class="h-12 w-12 md:w-16 md:h-16"
+        >
+          <img src="icons/linkedin.svg" alt="LinkedIn" />
+        </a>
+        <!-- Github -->
+        <a
+          href="https://github.com/preetiman-misra"
+          class="h-12 w-12 md:w-16 md:h-16"
+        >
+          <img src="icons/github.svg" alt="Github" />
+        </a>
+        <!-- Twitter -->
+        <a
+          href="https://twitter.com/MisraPreetiman"
+          class="h-12 w-12 md:w-16 md:h-16"
+        >
+          <img src="icons/twitter.svg" alt="Twitter" />
+        </a>
+      </div>
+      <div class="flex flex-col mt-4 space-y-1">
+        <a
+          href={`/blog/${post.slug}`}
+          class="text-base cursor-pointer hover:underline hover:underline-offset-4"
+          >Read latest blog post ↗</a
+        >
+        <a
+          href="#"
+          class="text-base cursor-pointer hover:underline hover:underline-offset-4"
+          >Download Resume/CV ↗</a
+        >
+      </div>
+    </div>
+  </div>
+</BaseLayout>
