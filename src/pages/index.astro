@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 const blogCollection = await getCollection("blog");
 const post = blogCollection.reverse()[0];
-import Button from "../components/ui/Button.astro";
 ---
 
 <BaseLayout>
@@ -70,4 +69,4 @@ import Button from "../components/ui/Button.astro";
       </div>
     </div>
   </div>
-  </BaseLayout>
+</BaseLayout>
