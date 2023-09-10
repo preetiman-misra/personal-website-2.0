@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-const blogCollection = await getCollection("blog");
-const post = blogCollection.reverse()[0];
+const blogCollection = await getCollection('blog');
+const sortedPosts = blogCollection.sort(function(a,b) {
+  return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
+});
+const latestPost = sortedPosts[0];
 ---
 
 <BaseLayout>
@@ -57,7 +60,7 @@ const post = blogCollection.reverse()[0];
       </div>
       <div class="flex flex-col mt-4 space-y-1">
         <a
-          href={`/blog/${post.slug}`}
+          href={`/blog/${latestPost.slug}`}
           class="text-base cursor-pointer hover:underline hover:underline-offset-4"
           >Read latest blog post ↗</a
         >
@@ -68,5 +71,15 @@ const post = blogCollection.reverse()[0];
         >
       </div>
     </div>
+  </div>
+  <div class="text-slate-600 text-lg">
+    <p class="text-slate-900 font-semibold text-2xl mt-8 mb-2">About Me? Ok</p>
+    <p>I'd be lying if I told you there&apos;s not much to say, but I&apos;ll keep it short. Here&apos;s few bullet points to keep it simple -</p>
+    <ul class="ml-2 mt-2">
+      <li>• <span class="font-bold">Keep</span> - <span class="italic">"An empty mind is the devil&apos;s workshop", or so my father says...</span></li>
+      <li>• <span class="font-bold">IT</span> - <span class="italic">Computers are easier to understand, unlike people...</span></li>
+      <li>• <span class="font-bold">Simple</span> - <span class="italic">But I am balanced, so I spend most of my time daydreaming I could reinvent the wheel in my sleep (mechanical engineer by education)</span></li>
+      <li>• <span class="font-bold">Stupid</span> - <span class="italic">So that&apos;s why I help run a healthcare company, manufacturing Active Pharmaceutical Ingredients!</span></li>
+    </ul>
   </div>
 </BaseLayout>

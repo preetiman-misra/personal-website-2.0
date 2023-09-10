@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-const blogPosts = await getCollection("blog");
-const posts = blogPosts.reverse();
+const blogCollection = await getCollection('blog');
+const posts = blogCollection.sort(function(a,b) {
+  return new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf();
+});
 ---
 
 <BaseLayout>
